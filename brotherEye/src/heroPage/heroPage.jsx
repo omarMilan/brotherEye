@@ -1,10 +1,14 @@
+import React from "react";
+import { useLocation } from "react-router-dom";
 import HeroInfoOne from "./heroInfoOne";
 import HeroInfoTwo from "./heroInfoTwo";
 import HeroInfoThree from "./heroInfoThree";
 import HeroChart from "./heroChart";
 
 export default function HeroPage() {
-  const name = "ironman";
+  const location = useLocation();
+  const name = location.state?.heroName || "ironman"; // Default to "ironman" if no name is passed
+
   return (
     <div className="w-screen min-h-screen overflow-y-auto fixed top-0 left-0 bg-backgroundColor pb-32">
       <HeroChart name={name} />

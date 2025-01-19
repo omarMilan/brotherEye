@@ -29,31 +29,39 @@ export default function HeroDetails({ heroName, fields }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const result = await fetch(`${API_BASE}${heroName}`);
-        const json = await result.json();
+    const fetchData = () => {
+      setIsLoading(true);
 
-        if (json.response === "success") {
-          const hero = json.results[0];
-          setData({
-            name: hero.name,
-            stats: hero.powerstats,
-            appearance: hero.appearance,
-            image: hero.image,
-            biography: hero.biography,
-            connections: hero.connections,
-            work: hero.work,
-          });
-        } else {
-          setError("Hero not found");
-        }
-      } catch (err) {
-        setError("Error fetching data");
-      } finally {
-        setIsLoading(false);
-      }
+      fetch(`${API_BASE}${heroName}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((json) => {
+          if (json.response === "success") {
+            const hero = json.results[0];
+            setData({
+              name: hero.name,
+              stats: hero.powerstats,
+              appearance: hero.appearance,
+              image: hero.image,
+              biography: hero.biography,
+              connections: hero.connections,
+              work: hero.work,
+            });
+          } else {
+            setError("Hero not found");
+          }
+        })
+        .catch((err) => {
+          setError("Error fetching data");
+          console.error(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     };
 
     fetchData();
@@ -90,13 +98,13 @@ export default function HeroDetails({ heroName, fields }) {
                 data.stats.power || 0,
                 data.stats.combat || 0,
               ],
-              backgroundColor: "rgba(50, 255, 126, 0.2)", // Matches textColor with transparency
-              borderColor: "#32FF7E", // Matches textColor
-              borderWidth: 2, // Border thickness
-              pointBackgroundColor: "#32FF7E", // Matches textColor
-              pointBorderColor: "#1A202C", // Matches backgroundColor
-              pointHoverBackgroundColor: "#1A202C", // Matches backgroundColor on hover
-              pointHoverBorderColor: "#32FF7E", // Matches textColor on hover
+              backgroundColor: "rgba(50, 255, 126, 0.2)",
+              borderColor: "#32FF7E",
+              borderWidth: 2,
+              pointBackgroundColor: "#32FF7E",
+              pointBorderColor: "#1A202C",
+              pointHoverBackgroundColor: "#1A202C",
+              pointHoverBorderColor: "#32FF7E",
             },
           ],
         }
@@ -157,8 +165,8 @@ export default function HeroDetails({ heroName, fields }) {
         <div
           className="mt-8"
           style={{
-            width: "500px", // Chart width
-            height: "500px", // Chart height
+            width: "500px",
+            height: "500px",
           }}
         >
           <Radar
@@ -169,24 +177,24 @@ export default function HeroDetails({ heroName, fields }) {
               scales: {
                 r: {
                   ticks: {
-                    color: "#32FF7E", // Matches textColor
-                    backdropColor: "#1A202C", // Matches backgroundColor
+                    color: "#32FF7E",
+                    backdropColor: "#1A202C",
                   },
                   angleLines: {
-                    color: "#2D3748", // Matches containerColor
+                    color: "#2D3748",
                   },
                   grid: {
-                    color: "#2D3748", // Matches containerColor
+                    color: "#2D3748",
                   },
                   pointLabels: {
-                    color: "#32FF7E", // Matches textColor for labels
+                    color: "#32FF7E",
                   },
                 },
               },
               plugins: {
                 legend: {
                   labels: {
-                    color: "#32FF7E", // Matches textColor for legend text
+                    color: "#32FF7E",
                   },
                 },
               },

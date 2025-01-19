@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import HeroPage from "./heroPage/heroPage";
+import HomePage from "./homePage/homePage";
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
+    <Router>
+      <div>
         <Routes>
-          <Route path="/" element={<HeroPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/heroPage" element={<HeroPage />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </Router>
   );
 }
 
