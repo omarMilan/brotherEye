@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-grow {
+  animation: grow 0.2s ease-out forwards;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
