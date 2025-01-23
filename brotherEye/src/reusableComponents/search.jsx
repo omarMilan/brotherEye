@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 const API_BASE =
   "http://localhost:8080/https://superheroapi.com/api/55f51348797eae3f8dd7f54b523b814a/search/";
 
-const Search = ({ placeholder, onSuggestionSelect }) => {
+const SearchComponent = ({ placeholder }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (searchTerm.trim() === "") {
@@ -37,16 +38,25 @@ const Search = ({ placeholder, onSuggestionSelect }) => {
     return () => clearTimeout(debounceFetch);
   }, [searchTerm]);
 
-  return (
-    <div className="max-w-md w-full bg-white shadow-md rounded p-4">
-      <h1 className="text-xl font-bold mb-4 text-center">Search</h1>
+  const handleSuggestionSelect = (item) => {
+    // Navigate to `/heropage` and pass the hero's name via state
+    navigate("/heropage", { state: { heroName: item.name } });
+  };
 
+  return (
+    <div className="max-w-md w-full shadow-md rounded p-4">
+      <div className="text-[48px] mb-3 text-center font-inconsolata text-white">
+        Explore
+      </div>
+      <div className="text-[24px] mb-4 text-center font-inconsolata text-white">
+        Instantly find your favorite fictional characters
+      </div>
       <input
         type="text"
         placeholder={placeholder}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-700"
       />
 
       <div className="mt-2 min-h-[80px]">
@@ -60,8 +70,8 @@ const Search = ({ placeholder, onSuggestionSelect }) => {
               >
                 {item.name}
                 <button
-                  onClick={() => onSuggestionSelect(item)}
-                  className="ml-2 px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none"
+                  onClick={() => handleSuggestionSelect(item)}
+                  className="ml-2 px-2 py-1 text-sm text-white bg-blue-700 rounded hover:bg-blue-700 focus:outline-none"
                 >
                   Select
                 </button>
@@ -76,3 +86,5 @@ const Search = ({ placeholder, onSuggestionSelect }) => {
     </div>
   );
 };
+
+export default SearchComponent;

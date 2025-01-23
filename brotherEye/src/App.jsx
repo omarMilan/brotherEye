@@ -10,6 +10,7 @@ import "./App.css";
 import HeroPage from "./heroPage/heroPage";
 import HomePage from "./homePage/homePage";
 import Header from "./reusableComponents/header";
+import SearchPage from "./heroPage/searchPage";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -40,6 +41,19 @@ function AnimatedRoutes() {
               transition={{ duration: 0.5 }}
             >
               <HeroPage />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/Search"
+          element={
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              <SearchPage />
             </motion.div>
           }
         />

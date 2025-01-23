@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import HeroInfoOne from "./heroInfoOne";
-import HeroInfoTwo from "./heroInfoTwo";
-import HeroInfoThree from "./heroInfoThree";
-import HeroChart from "./heroChart";
+import HeroInfoOne from "./HeroInfoOne";
+import HeroInfoTwo from "./HeroInfoTwo";
+import HeroInfoThree from "./HeroInfoThree";
+import HeroChart from "./HeroChart";
 
 export default function HeroPage() {
   const location = useLocation();
@@ -14,7 +14,6 @@ export default function HeroPage() {
       <HeroChart name={name} />
       <HeroInfoOne name={name} />
 
-      <div className="w-[307px] h-[213px] bg-containerColor absolute right-0 bottom-0 -mb-28 mr-10 flex rounded-sm shadow-sm shadow-black"></div>
       <HeroInfoTwo name={name} />
       <HeroInfoThree name={name} />
       <div className="w-[1px] h-[100px] absolute right-0 bottom-0 -mb-32 mr-10 flex"></div>
