@@ -2,7 +2,7 @@ import HeroDetails from "./heroDetails";
 
 export default function HeroInfoOne({ name }) {
   return (
-    <div className="h-[615px] absolute right-0 top-0 mt-10 mr-10 flex flex-col items-center rounded-sm shadow-sm shadow-black w-[307px] bg-containerColor">
+    <div className="h-[615px] absolute right-0 top-0 mt-24 mr-10 flex flex-col items-center rounded-sm shadow-sm hover:ring-2 hover:ring-textColor duration-300 transition-all shadow-black w-[307px] bg-containerColor">
       {/* Image */}
       <div className="mt-8">
         <HeroDetails heroName={name} fields={["image"]} />
