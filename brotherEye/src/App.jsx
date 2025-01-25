@@ -11,6 +11,7 @@ import HeroPage from "./heroPage/heroPage";
 import HomePage from "./homePage/homePage";
 import Header from "./reusableComponents/header";
 import SearchPage from "./heroPage/searchPage";
+import NewsPage from "./newsPage/newsPage";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -54,6 +55,19 @@ function AnimatedRoutes() {
               transition={{ duration: 0.5 }}
             >
               <SearchPage />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/news"
+          element={
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              <NewsPage />
             </motion.div>
           }
         />

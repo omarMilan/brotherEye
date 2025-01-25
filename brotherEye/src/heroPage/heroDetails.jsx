@@ -98,13 +98,13 @@ export default function HeroDetails({ heroName, fields }) {
                 data.stats.power || 0,
                 data.stats.combat || 0,
               ],
-              backgroundColor: "rgba(50, 255, 126, 0.2)",
-              borderColor: "#32FF7E",
+              backgroundColor: "rgba(255, 28, 88, 0.2)",
+              borderColor: "#FF1C58",
               borderWidth: 2,
-              pointBackgroundColor: "#32FF7E",
+              pointBackgroundColor: "#FF1C58",
               pointBorderColor: "#1A202C",
               pointHoverBackgroundColor: "#1A202C",
-              pointHoverBorderColor: "#32FF7E",
+              pointHoverBorderColor: "#FF1C58",
             },
           ],
         }
@@ -177,8 +177,11 @@ export default function HeroDetails({ heroName, fields }) {
               scales: {
                 r: {
                   ticks: {
-                    color: "#32FF7E",
-                    backdropColor: "#1A202C",
+                    color: "#FF1C58",
+                    backdropColor: "#101010",
+                    font: {
+                      size: 14,
+                    },
                   },
                   angleLines: {
                     color: "#2D3748",
@@ -187,14 +190,21 @@ export default function HeroDetails({ heroName, fields }) {
                     color: "#2D3748",
                   },
                   pointLabels: {
-                    color: "#32FF7E",
+                    color: "#00B7EB", // Blue text for point labels
+                    font: {
+                      size: 16,
+                      weight: "bold",
+                    },
                   },
                 },
               },
               plugins: {
                 legend: {
                   labels: {
-                    color: "#32FF7E",
+                    color: "#FF1C58", // Red legend labels
+                    font: {
+                      size: 14,
+                    },
                   },
                 },
               },
